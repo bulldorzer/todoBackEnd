@@ -41,6 +41,11 @@ public class TodoServiceImpl implements TodoService {
     Todo savedTodo = todoRepository.save(todo);
 
     return savedTodo.getTno();
+    /*
+    생성된 객체가 반환 (엔티티형)
+    객체에서 tno반환
+    tno가 엔티티에서 Long형이라
+    */
 
   }
 
@@ -63,6 +68,13 @@ public class TodoServiceImpl implements TodoService {
 
     Todo todo = result.orElseThrow();
 
+    /*
+      일부값만 변환함
+      dto->엔티티 변환
+      전체 변환할시에 mapper사용하여 변환할것
+      DTO에 값 추출해서, todoEntity에 저장해줌(변경)
+      변경X : tno, 제목,작성날자,완료여부만 변경
+    */
     todo.changeTitle(todoDTO.getTitle());
     todo.changeDueDate(todoDTO.getDueDate());
     todo.changeComplete(todoDTO.isComplete());
