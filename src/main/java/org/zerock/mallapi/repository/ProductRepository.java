@@ -15,7 +15,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
   @EntityGraph(attributePaths = "imageList")
   @Query("select p from Product p where p.pno = :pno")
-  // SELECT P FROM Product p where p.pno = ?
+  // SELECT P.* FROM Product p where p.pno = ? [JPQL]
   Optional<Product> selectOne(@Param("pno") Long pno);
 
   @Modifying

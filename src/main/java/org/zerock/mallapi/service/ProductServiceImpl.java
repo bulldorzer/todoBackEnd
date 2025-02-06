@@ -47,7 +47,14 @@ public class ProductServiceImpl implements ProductService{
       result = productRepository.selectList(pageRequestDTO.getKeyword(), pageable);
     }
 
-    
+    /*
+      result = 엔티티에서 받은 상품 목록 (상품정보목록+이미지목록)
+      1) map() = 데이터 변환 -> 새로운 목록(DTO) 생성 - 1개씩 추출
+      2) arr[0] - 상품정보목록 arr[1] - 이미지 정보목록
+      3) ProductDTO에 상품정보(엔티티)를 빌더 패턴으로 생성
+      4) ProductDTO에 이미지 목록 추가함
+      5) return 상품 1개만 리턴함
+    */
     List<ProductDTO> dtoList = result.get().map(arr -> {
 
       Product product = (Product) arr[0];
@@ -101,6 +108,7 @@ public class ProductServiceImpl implements ProductService{
       return product;
     }
 
+    // 업로드된 이미지 이름을 product의 productImage에 추가
     uploadFileNames.stream().forEach(uploadName -> {
     
       product.addImageString(uploadName);

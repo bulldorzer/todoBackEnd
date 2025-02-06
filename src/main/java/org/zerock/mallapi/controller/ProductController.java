@@ -36,7 +36,7 @@ public class ProductController {
   @PostMapping("/")
   public Map<String, Long> register(ProductDTO productDTO){
     
-    log.info("rgister: " + productDTO);
+    log.info("register: " + productDTO);
 
     List<MultipartFile> files = productDTO.getFiles();
 
