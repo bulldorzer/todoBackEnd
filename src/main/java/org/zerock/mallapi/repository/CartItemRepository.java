@@ -16,8 +16,7 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
             " where " +
             "   mc.owner.email = :email and pi.ord = 0 " +
             " order by ci desc ")
-    List<CartItemListDTO> getItemsOfCartDTOByEmail(@Param("email")
-                                                   String email);
+    List<CartItemListDTO> getItemsOfCartDTOByEmail(@Param("email") String email);
 
     @Query("select" +
             " ci " +
